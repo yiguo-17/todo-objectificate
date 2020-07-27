@@ -25,31 +25,6 @@ const loadTodos = function() {
   }
 }
 
-const displayTodos = function(shouldPrintNumber) {
-  console.log('\nHere are your current todos:\n')
-  for (let i = 0; i < todos.length; i++) {
-    const todo = todos[i];
-    const text = todo[0];
-    const isComplete = todo[1];
-    const num = i + 1;
-    let todoLine = '';
-    if (shouldPrintNumber) {
-      todoLine = todoLine + num + '. ';
-    } else {
-      todoLine = todoLine + '* ';
-    }
-
-    todoLine = todoLine + text + ' - ';
-    if (isComplete === 'complete') {
-      todoLine = todoLine + '✅';
-    } else {
-      todoLine = todoLine + '✖';
-    }
-
-    console.log(todoLine);
-  }
-}
-
 const saveTodos = function() {
   const rowStrings = [];
   for (const todo of todos) {
@@ -58,6 +33,31 @@ const saveTodos = function() {
 
   const newContents = rowStrings.join('\n');
   fs.writeFileSync('./todos.csv', newContents);
+}
+
+const displayTodos = function(shouldPrintNumber) {
+  console.log('\nHere are your current todos:\n')
+  for (let i = 0; i < todos.length; i++) {
+    const todo = todos[i];
+    const text = todo[0];
+    const isComplete = todo[1];
+    const priority = todo[2];
+    const num = i + 1;
+    let listSymbol = '*';
+    let mark = '✖';
+    if (shouldPrintNumber) {
+      listSymbol = num + '.';
+    }
+
+    if (isComplete === 'complete') {
+      mark = '✅';
+    }
+
+    const todoLine = listSymbol + ' ' + text + ' - priority: ' + priority + ' - ' + mark;
+    // or, using interpolation:
+    // const todoLine = `${listSymbol} ${todo.text} - priority: ${todo.priority} - ${mark}`
+    console.log(todoLine);
+  }
 }
 
 const add = function(text) {
