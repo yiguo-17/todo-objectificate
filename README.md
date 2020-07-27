@@ -60,7 +60,7 @@ Your mileage may vary on whether that's worth the extra lines of code!
 * For `complete` and `uncomplete`, remember that you `isComplete` is a boolean!
 
 
-##### Stretch Goals (in rough order of difficulty)
+### Stretch Goals (in rough order of difficulty)
 
 * Add the ability to toggle the priority between 1 and 2. You'll need to add it to the menu, give a followup question (like the other menu options!), and then find the todo they've chosen and toggle its `priority` property. 
 * Add an option to remove all completed todos. Once you've removed them from the `todos` array, you can call `saveTodos`, and it will save your new, slimmer `todos` to the JSON file. But how do we remove them? There are multiple ways to do this. My favorite way is to loop through and identify which ones are NOT complete, as those are the ones you'll want to keep, and then add them to a new array. Then, somehow, get them into `todos`. But there are other ways as well!
